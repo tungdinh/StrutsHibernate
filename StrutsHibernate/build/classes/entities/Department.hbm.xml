@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016/06/17 10:09:57 by Hibernate Tools 3.6.0.Final -->
+<hibernate-mapping>
+    <class name="entities.Department" table="DEPARTMENT" schema="VTUNG">
+        <id name="id" type="big_decimal">
+            <column name="ID" precision="22" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="deparment" type="string">
+            <column name="DEPARMENT" length="20" />
+        </property>
+        <set name="members" table="MEMBER" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="DEPARTMENT_ID" precision="22" scale="0" />
+            </key>
+            <one-to-many class="entities.Member" />
+        </set>
+    </class>
+</hibernate-mapping>

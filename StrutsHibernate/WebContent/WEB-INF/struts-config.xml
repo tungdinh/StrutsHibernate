@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+    "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+<struts-config>
+   <form-beans>
+        <form-bean name="memberform" type="form.MemberForm" />
+    </form-beans>
+
+    <action-mappings>
+        <action
+            parameter="MemberList"
+            path="/ListMember"
+            type="controller.MemberAction"
+            >
+            <forward name="success" path="/MemberList.jsp"/>
+        </action>
+         <action
+            parameter="MemberListbyDepartment"
+            path="/MemberListbyDepartment"
+            type="controller.MemberAction"
+            >
+            <forward name="success" path="/MemberListbyDepartment.jsp"/>
+        </action>
+        <action path="/add"
+                 parameter="AddMember"
+                 type="controller.MemberAction"
+                 >
+             <forward name="add" path="/AddMember.jsp" redirect="true"/>
+        </action>
+        <action path="/save"
+                 parameter="MemberSave"
+                 name ="memberform"
+                 type="controller.MemberAction"
+                 input="/AddMember.jsp">
+             <forward name="save" path="/ListMember.do" redirect="true"/>
+        </action>
+
+         <action parameter="MemberDelete" path="/delete" type="controller.MemberAction">
+            <forward name="delete" path="/ListMember.do" />
+        </action>
+        <action parameter="MemberEdit" path="/member" type="controller.MemberAction">
+            <forward name="edit" path="/EditMember.jsp" />
+        </action>
+         <action name="memberform" parameter="MemberUpdate" path="/update" type="controller.MemberAction" input="/EditMember.jsp" validate="true">
+            <forward name="update" path="/ListMember.do" redirect="true" />
+        </action>
+
+    </action-mappings>
+
+    <message-resources parameter="resource" />
+    <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+     <set-property property="pathnames"
+        value="/org/apache/struts/validator/validator-rules.xml,/WEB-INF/validation.xml" />
+    </plug-in>
+
+</struts-config>

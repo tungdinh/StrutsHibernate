@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016/06/17 10:09:57 by Hibernate Tools 3.6.0.Final -->
+<hibernate-mapping>
+    <class name="entities.Member" table="MEMBER" schema="VTUNG">
+        <id name="id" type="integer">
+            <column name="ID" precision="22" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="department" class="entities.Department" fetch="select">
+            <column name="DEPARTMENT_ID" precision="22" scale="0" />
+        </many-to-one>
+        <property name="name" type="string">
+            <column name="NAME" length="50" not-null="true" />
+        </property>
+        <property name="nameYomikata" type="string">
+            <column name="NAME_YOMIKATA" length="50" not-null="true" />
+        </property>
+        <property name="email" type="string">
+            <column name="EMAIL" length="50" />
+        </property>
+        <property name="telephone" type="string">
+            <column name="TELEPHONE" length="50" />
+        </property>
+        <property name="address" type="string">
+            <column name="ADDRESS" />
+        </property>
+    </class>
+</hibernate-mapping>
